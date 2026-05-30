@@ -1,4 +1,17 @@
 package com.rikkei.session9.model.dto.response;
 
-public class ApiDataResponse {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ApiDataResponse <T>{
+    private boolean success;
+    private String message;
+    private T data;
+    private T errors;
+    private HttpStatus status;
 }

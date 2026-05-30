@@ -1,4 +1,7 @@
 package com.rikkei.session9.custom_validator;
 
-public class ResourceNotFound extends RuntimeException{
+public class ResourceNotFoundException extends RuntimeException{
+    public ResourceNotFoundException(String message) {
+            super( message);
+    }
 }
