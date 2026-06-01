@@ -23,11 +23,9 @@ public class GlobalExceptionHandler {
             errors.put("Errors: "+(i+1),objectError.getDefaultMessage());
         }
         return new ResponseEntity<>(new ApiDataResponse<>(
-                false,
+               "Failure",
                 "Lỗi dữ liệu",
-                null,
-                errors,
-                HttpStatus.BAD_REQUEST
+                errors
 
         ),HttpStatus.BAD_REQUEST);
     }

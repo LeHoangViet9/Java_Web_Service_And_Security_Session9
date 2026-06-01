@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApiDataResponse <T>{
-    private boolean success;
+    private String status;
+
     private String message;
+
     private T data;
-    private T errors;
-    private HttpStatus status;
 }

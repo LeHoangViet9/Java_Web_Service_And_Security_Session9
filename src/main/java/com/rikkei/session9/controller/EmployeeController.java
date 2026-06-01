@@ -19,11 +19,9 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<ApiDataResponse<Employee>> createEmployee(@Valid @RequestBody EmployeeCreateDTO employeeCreateDTO) {
         return new ResponseEntity<>(new ApiDataResponse<>(
-                true,
+                "SUCCESS",
                 "Thêm mới nhân viên thành công",
-                employeeService.createEmployee(employeeCreateDTO),
-                null,
-                HttpStatus.CREATED
+                employeeService.createEmployee(employeeCreateDTO)
         ),HttpStatus.CREATED);
     }
 

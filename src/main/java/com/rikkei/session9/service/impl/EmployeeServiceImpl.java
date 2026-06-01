@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.UUID;
 
 @Service
@@ -44,16 +45,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee uploadFile(Long id, MultipartFile file) {
         Employee em=employeeRepository.findById(id).orElseThrow(()-> new RuntimeException("Không tìm thấy nhân viên"));
-        if(!file.isEmpty()) {
+        if(file==null||file.isEmpty()) {
             throw new RuntimeException("File không được để trống");
         }
         long maxSize=2*1024*1024;
         if(file.getSize() > maxSize) {
             throw new RuntimeException("File không được vượt quá 2MB");
         }
-        String fileName=file.getOriginalFilename();
-        if(!fileName.endsWith("jpg")||fileName.endsWith("png")||fileName.endsWith("jpeg")) {
-            throw new InvalidFileException("File không đúng định dạng");
+        String fileName=file.getOriginalFilename().toLowerCase();
+        if (!(fileName.endsWith(".jpg")
+                || fileName.endsWith(".jpeg")
+                || fileName.endsWith(".png"))) {
+
+            throw new RuntimeException("Chỉ chấp nhận jpg, jpeg, png");
         }
         try {
             String uploadDir="uploads/";

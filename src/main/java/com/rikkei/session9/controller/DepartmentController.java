@@ -21,11 +21,9 @@ public class DepartmentController {
     @PostMapping
     public ResponseEntity<ApiDataResponse<Department>> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) {
             return new ResponseEntity<>(new ApiDataResponse<>(
-                    true,
+                    "SUCCESS",
                     "Thêm mới phòng ban thành công",
-                    departmentService.createDepartment(departmentDTO),
-                    null,
-                    HttpStatus.CREATED
+                    departmentService.createDepartment(departmentDTO)
             ), HttpStatus.CREATED);
     }
 }
